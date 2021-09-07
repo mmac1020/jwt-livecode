@@ -24,6 +24,10 @@ User.byToken = async (token) => {
     if (user) {
       return user;
     }
+    // If the user is not found in the database we need to throw an error
+    const error = Error('bad credentials');
+    error.status = 401;
+    throw error;
   } catch (ex) {
     const error = Error('bad credentials');
     error.status = 401;
