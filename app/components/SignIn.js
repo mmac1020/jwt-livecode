@@ -21,12 +21,11 @@ export class SignIn extends React.Component {
     });
   }
   render() {
-    const { onChange, onSubmit } = this;
     const { username, password } = this.state;
     return (
-      <form onSubmit={onSubmit}>
-        <input value={username} onChange={onChange} name='username' />
-        <input value={password} onChange={onChange} name='password' />
+      <form onSubmit={this.onSubmit}>
+        <input value={username} onChange={this.onChange} name='username' />
+        <input value={password} onChange={this.onChange} name='password' />
         <button>Sign In</button>
       </form>
     );

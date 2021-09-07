@@ -31,20 +31,18 @@ export class App extends React.Component{
   async signIn(credentials){
     let response = await axios.post('/api/auth', credentials);
     const { token } = response.data;
-    window.localStorage.setItem('token', token);
+    window.localStorage.setItem('token', JSON.stringify(token));
     this.attemptTokenLogin();
   }
   render(){
     const { auth } = this.state;
-    const { signIn, logout } = this;
-    if(!auth.id){
-      return <SignIn signIn={ signIn }/>
-    }
-    else {
+    if (!auth.id) {
+      return <SignIn signIn={this.signIn} />;
+    } else {
       return (
         <div>
-          Welcome { auth.username }
-          <button onClick={ logout }>Logout</button>
+          Welcome {auth.username}
+          <button onClick={this.logout}>Logout</button>
         </div>
       );
     }

@@ -17,6 +17,7 @@ app.post('/api/auth', async (req, res, next) => {
      *  password: ourPassword
      * }
      */
+    console.log(req.body);
     res.send({ token: await User.authenticate(req.body) });
   } catch (ex) {
     next(ex);

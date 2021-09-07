@@ -2,11 +2,11 @@ const Sequelize = require('sequelize');
 const { STRING } = Sequelize;
 const jwt = require('jsonwebtoken');
 
-const tokenSecret = process.env.JWTSECRET;
+const tokenSecret = 'OUR_SECRET_PHRASE';
 
 const db = new Sequelize(
   process.env.DATABASE_URL || 'postgres://localhost/jwt_example',
-  {logging: false}
+  { logging: false }
 );
 
 const User = db.define('user', {
@@ -17,7 +17,7 @@ const User = db.define('user', {
 User.byToken = async (token) => {
   try {
     // Typically we'll need to decode the token to get the information, but our first example is just a user's ID.
-    const user = await User.findByPk(token);
+    const user = await User.findByPk(JSON.parse(token).id);
     if (user) {
       return user;
     }
@@ -38,9 +38,9 @@ User.authenticate = async ({ username, password }) => {
       password,
     },
   });
+  console.log(user);
   if (user) {
-    // for now this is just our user's IDs. Later on this will be a JWT
-    return jwt.sign({id: user.id, username: user.username}, process.env.JWTSECRET);
+    return { id: user.id };
   }
   const error = Error('bad credentials');
   error.status = 401;
