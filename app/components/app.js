@@ -31,7 +31,7 @@ export class App extends React.Component{
   async signIn(credentials){
     let response = await axios.post('/api/auth', credentials);
     const { token } = response.data;
-    window.localStorage.setItem('token', JSON.stringify(token));
+    window.localStorage.setItem('token', token);
     this.attemptTokenLogin();
   }
   render(){
