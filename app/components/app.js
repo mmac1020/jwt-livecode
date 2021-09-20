@@ -36,15 +36,13 @@ export class App extends React.Component{
   }
   render(){
     const { auth } = this.state;
-    const { signIn, logout } = this;
-    if(!auth.id){
-      return <SignIn signIn={ signIn }/>
-    }
-    else {
+    if (!auth.id) {
+      return <SignIn signIn={this.signIn} />;
+    } else {
       return (
         <div>
-          Welcome { auth.username }
-          <button onClick={ logout }>Logout</button>
+          Welcome {auth.username}
+          <button onClick={this.logout}>Logout</button>
         </div>
       );
     }

@@ -1,10 +1,10 @@
 const { db, User } = require('./server/db/db');
 
 const users = [
-  {username: 'Mac', password: 'iAmTheBest'},
-  {username: 'Sarah', password: 'KINDA_LAME'},
-  {username: 'Jackie', password: 'leftUsForAJob'}
-]
+  { username: 'Mac', password: 'iAmTheBest' },
+  { username: 'Ben', password: 'KINDA_LAME' },
+  { username: 'Lauren', password: 'superFellow!@#' },
+];
 
 const seed = async () => {
   await db.sync({force: true});

@@ -8,6 +8,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..','public')))
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
 
+// This is for logging in to our app.
 app.post('/api/auth', async (req, res, next) => {
   try {
     /**
@@ -23,6 +24,7 @@ app.post('/api/auth', async (req, res, next) => {
   }
 });
 
+// Trying to verify our token / login
 app.get('/api/auth', async (req, res, next) => {
   try {
     // Our tokens will be sent with the req.header of "authorization"
